@@ -27,6 +27,8 @@
  */
 function callback(result) {
     console.log("-----------CALLBACK : result : ", result.data, "-----------")
+
+    //get the list element
     const listElement = document.getElementsByClassName("my-list")
     const numberOfItemsInList = listElement[0].childElementCount
     console.log("==>debug 1: Total list items = ",listElement[0].childElementCount)
@@ -43,10 +45,11 @@ function callback(result) {
  * 
  * @param {*} callback 
  */
-async function getUsersUsingAxiosAsync(callback) {
 
+async function getUsersUsingAxiosAsync(urlString, callback) {
+    console.log("----- getUsersUsingAxiosAsync() url: ", urlString)
     try {
-        let result = await axios.get("https://jsonplaceholder.typicode.com/users")
+        let result = await axios.get(urlString, callback)
         // let resultObj = await result.json()
         callback(result)
     } catch (error) {
